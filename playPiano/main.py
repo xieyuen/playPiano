@@ -9,7 +9,7 @@
 from playPiano import PlayPiano, Notes, StopThreads
 
 if __name__ == '__main__':
-    playlist = Notes().load_notes(r'resources\notes')
+    playlist = Notes().load_notes('resources/notes')
     stop_threads = StopThreads()
     while True:
         print('请选择您想弹奏的琴谱：')
@@ -32,6 +32,7 @@ if __name__ == '__main__':
         title, song = list(playlist.items())[choice - 1]
         notes, accompaniments, times = song['notes'], song['accompaniments'], song['times']
         print('正在弹奏{}...'.format(title))
+
         play_notes = PlayPiano(times=times, notes_visible=True).load_notes(notes)
         play_accompaniments = PlayPiano(times=times).load_notes(accompaniments)
         play_notes.start()
